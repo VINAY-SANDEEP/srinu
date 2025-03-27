@@ -5,6 +5,7 @@ function RadioButtonGroup() {
     "Aditya University",
     "Aditya College of Engineering",
     "Aditya Polytechnic",
+    "T-Hub Fans",
     "Random Generator"
   ];
   const [selectedOption, setSelectedOption] = useState("");
@@ -26,7 +27,12 @@ function RadioButtonGroup() {
       url = `https://info.aec.edu.in/ACET/StudentPhotos/${rollno}.jpg`;
     } else if (selectedOption === options[2]) {
       url = `https://info.aec.edu.in/saipoly/StudentPhotos/${rollno}.jpg`;
-    }else if (selectedOption === options[3]) {
+    }
+    else if (selectedOption === options[3]) {
+      let up = rollno.toUpperCase()
+      url = `https://mobile.technicalhub.io:5010/student/${up}.png`;
+    }
+    else if (selectedOption === options[4]) {
       let orginalclass = "23MH1A42"
       let random = Math.floor(Math.random()*71)+1
       url = `https://info.aec.edu.in/ACET/StudentPhotos/${orginalclass+random}.jpg`;
