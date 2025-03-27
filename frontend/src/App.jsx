@@ -5,6 +5,7 @@ function RadioButtonGroup() {
     "Aditya University",
     "Aditya College of Engineering",
     "Aditya Polytechnic",
+    "Random Generator"
   ];
   const [selectedOption, setSelectedOption] = useState("");
   const [rollno, setRoll] = useState("");
@@ -16,18 +17,8 @@ function RadioButtonGroup() {
 
   const handleCollegeChange = (event) => {
     setSelectedOption(event.target.value);
-  };
-
+  };   
   const generateImage = () => {
-    if (!selectedOption) {
-      alert("Please select a college.");
-      return;
-    }
-    if (!rollno) {
-      alert("Please enter a Roll Number.");
-      return;
-    }
-
     let url = "";
     if (selectedOption === options[0]) {
       url = `https://info.aec.edu.in/AEC/StudentPhotos/${rollno}.jpg`;
@@ -35,8 +26,11 @@ function RadioButtonGroup() {
       url = `https://info.aec.edu.in/ACET/StudentPhotos/${rollno}.jpg`;
     } else if (selectedOption === options[2]) {
       url = `https://info.aec.edu.in/saipoly/StudentPhotos/${rollno}.jpg`;
+    }else if (selectedOption === options[3]) {
+      let orginalclass = "23MH1A42"
+      let random = Math.floor(Math.random()*71)+1
+      url = `https://info.aec.edu.in/ACET/StudentPhotos/${orginalclass+random}.jpg`;
     }
-
     setImgUrl(url);
   };
 
