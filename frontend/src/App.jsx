@@ -26,6 +26,7 @@ function RadioButtonGroup() {
       url = `https://info.aec.edu.in/AEC/StudentPhotos/${rollno}.jpg`;
     } else if (selectedOption === options[1]) {
       url = `https://info.aec.edu.in/ACET/StudentPhotos/${rollno}.jpg`;
+      alert("ra adhnuku ra aa bhathuku");
     } else if (selectedOption === options[2]) {
       url = `https://info.aec.edu.in/aecpoly/StudentPhotos/${rollno}.jpg`;
     } else if (selectedOption === options[3]) {
@@ -50,7 +51,6 @@ function RadioButtonGroup() {
           Student Photo Finder
         </h2>
 
-        {/* Roll Number Input */}
         <div className="mb-4">
           <label className="block text-gray-700 font-medium">Roll Number</label>
           <input
@@ -62,7 +62,7 @@ function RadioButtonGroup() {
           />
         </div>
 
-        {/* Radio Buttons */}
+       
         <div className="mb-4">
           <p className="text-gray-700 font-medium">Select College:</p>
           {options.map((option, index) => (
@@ -80,7 +80,6 @@ function RadioButtonGroup() {
           ))}
         </div>
 
-        {/* Submit Button */}
         <button
           onClick={generateImage}
           className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300"
@@ -88,12 +87,11 @@ function RadioButtonGroup() {
           Generate Image
         </button>
 
-        {/* Display Image */}
         {imgUrl && (
           <div className="mt-4 flex justify-center">
             <img
               src={imgUrl}
-              alt="Student"
+              alt="image ledhu ra puka correct ga enter chey"
               className="w-50 h-45 object-cover border border-gray-300 rounded-md"
             />
           </div>
