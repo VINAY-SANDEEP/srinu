@@ -13,7 +13,8 @@ function RadioButtonGroup() {
   const [selectedOption, setSelectedOption] = useState("");
   const [rollno, setRoll] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [showFlowers, setShowFlowers] = useState(false);
+  const [showAnimation, setShowAnimation] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleRollChange = (e) => {
     setRoll(e.target.value.trim());
@@ -37,34 +38,50 @@ function RadioButtonGroup() {
       let up = rollno.toUpperCase();
       url = `https://mobile.technicalhub.io:5010/student/${up}.png`;
     } else if (selectedOption === options[5]) {
-      let orginalclass = "23MH1A42";
+      let originalClass = "23MH1A42";
       let random = Math.floor(Math.random() * 71) + 1;
-      url = `https://info.aec.edu.in/ACET/StudentPhotos/${orginalclass + random}.jpg`;
+      url = `https://info.aec.edu.in/ACET/StudentPhotos/${originalClass + random}.jpg`;
     }
     setImgUrl(url);
-    setShowFlowers(true);
-    setTimeout(() => setShowFlowers(false), 3000);
+    setShowAnimation(true);
+    setShowPopup(true);
+    setTimeout(() => setShowAnimation(false), 5000);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 relative overflow-hidden">
-      {showFlowers && (
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4 overflow-hidden">
+      {showAnimation && (
         <AnimatePresence>
-          {[...Array(10)].map((_, i) => (
+          {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute text-4xl"
-              style={{ left: `${Math.random() * 100}%`, top: "100%" }}
-              initial={{ opacity: 0, y: 20}}
-              animate={{ opacity: 3, y: -500 }}
+              style={{ left: `${Math.random() * 100}%`, top: "-10%" }}
+              initial={{ opacity: 0, y: -50 }}
+              animate={{ opacity: 1, y: "110vh" }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 3, ease: "easeOut" }}
+              transition={{ duration: 5, ease: "linear" }}
             >
-              🌸 💕
+            💮🌸💕
             </motion.div>
           ))}
         </AnimatePresence>
       )}
+
+      {showPopup &&  selectedOption === options[1] && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <img src="../WhatsApp Image 2025-04-03 at 19.13.39_fccf5608.jpg" alt="" srcset="" />
+            <button
+              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+              onClick={() => setShowPopup(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-md w-full relative z-10">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
           Student Photo Finder
@@ -109,7 +126,7 @@ function RadioButtonGroup() {
           <div className="mt-4 flex justify-center">
             <img
               src={imgUrl}
-              alt="priya i love u"
+              alt="Generated Student Photo"
               className="w-50 h-45 object-cover border border-gray-300 rounded-md"
             />
           </div>
