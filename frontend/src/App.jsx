@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import "./App.css"
 function RadioButtonGroup() {
   const options = [
     "Aditya University",
@@ -14,7 +14,6 @@ function RadioButtonGroup() {
   const [rollno, setRoll] = useState("");
   const [imgUrl, setImgUrl] = useState("");
   const [showAnimation, setShowAnimation] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
 
   const handleRollChange = (e) => {
     setRoll(e.target.value.trim());
@@ -44,7 +43,6 @@ function RadioButtonGroup() {
     }
     setImgUrl(url);
     setShowAnimation(true);
-    setShowPopup(true);
     setTimeout(() => setShowAnimation(false), 5000);
   };
 
@@ -57,31 +55,17 @@ function RadioButtonGroup() {
               key={i}
               className="absolute text-4xl"
               style={{ left: `${Math.random() * 100}%`, top: "-10%" }}
-              initial={{ opacity: 0, y: -50 }}
+              initial={{ opacity: 7, y: -50 }}
               animate={{ opacity: 1, y: "110vh" }}
               exit={{ opacity: 0 }}
               transition={{ duration: 5, ease: "linear" }}
             >
-            💮🌸💕
+            <img src="../WhatsApp Image 2025-04-03 at 19.13.39_fccf5608.jpg" width={80} />
             </motion.div>
           ))}
         </AnimatePresence>
       )}
-
-      {showPopup &&  selectedOption === options[1] && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-20">
-          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
-            <img src="../WhatsApp Image 2025-04-03 at 19.13.39_fccf5608.jpg" alt="" srcset="" />
-            <button
-              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-              onClick={() => setShowPopup(false)}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
-
+    <marquee behavior="" direction=""><img src="../WhatsApp Image 2025-04-03 at 19.13.39_fccf5608.jpg" alt="" srcset="" width={80}/></marquee>
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-md w-full relative z-10">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
           Student Photo Finder
@@ -133,6 +117,7 @@ function RadioButtonGroup() {
         )}
       </div>
     </div>
+    
   );
 }
 
