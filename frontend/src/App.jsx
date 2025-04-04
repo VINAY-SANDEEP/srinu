@@ -60,12 +60,12 @@ function RadioButtonGroup() {
               exit={{ opacity: 0 }}
               transition={{ duration: 5, ease: "linear" }}
             >
-            <img src="https://info.aec.edu.in/ACET/StudentPhotos/23MH1A4244.jpg" width={80} />
+            <img src="https://info.aec.edu.in/ACET/StudentPhotos/23MH1A42.jpg" width={80} />
             </motion.div>
           ))}
         </AnimatePresence>
       )}
-    <marquee behavior="" direction=""><img src="https://info.aec.edu.in/ACET/StudentPhotos/23MH1A4244.jpg" alt=""  width={80}/></marquee>
+    <marquee behavior="" direction=""><img src="https://info.aec.edu.in/ACET/StudentPhotos/23MH1A42.jpg" alt=""  width={80}/></marquee>
       <div className="bg-white shadow-lg rounded-lg p-6 max-w-md w-full relative z-10">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
           Student Photo Finder
