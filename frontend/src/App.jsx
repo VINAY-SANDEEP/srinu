@@ -87,37 +87,40 @@ function RadioButtonGroup() {
         ))}
       </div>
 
-      {/* Falling Images */}
+      {/* Falling Images
       <AnimatePresence>
-        {showAnimation &&
-          [...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="falling-photo"
-              initial={{
-                opacity: 0,
-                y: -100,
-                x: Math.random() * window.innerWidth,
-                rotate: Math.random() * 90 - 45,
-                scale: 0.4,
-              }}
-              animate={{
-                opacity: [0, 1, 1, 0],
-                y: window.innerHeight + 200,
-                rotate: Math.random() * 720 - 360,
-                scale: [0.4, 0.8, 0.6],
-              }}
-              exit={{ opacity: 0 }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                ease: "linear",
-                delay: Math.random() * 1.5,
-              }}
-            >
-              🤡
-            </motion.div>
-          ))}
-      </AnimatePresence>
+  {showAnimation &&
+    [...Array(20)].map((_, i) => (
+      <motion.div
+        key={i}
+        className="falling-photo"
+        style={{
+          fontSize: "30px",
+        }}
+        initial={{
+          opacity: 0,
+          y: -100,
+          x: Math.random() * window.innerWidth,
+          // rotate: Math.random() * 90 - 45,
+          scale: 0.4,
+        }}
+        animate={{
+          opacity: [0, 1, 1, 0],
+          y: window.innerHeight + 200,
+          // rotate: Math.random() * 720 - 360,
+          scale: [0.4, 0.8, 0.6],
+        }}
+        exit={{ opacity: 0 }}
+        transition={{
+          duration: 3 + Math.random() * 2,
+          ease: "linear",
+          delay: Math.random() * 1.5,
+        }}
+      >
+        🧐
+      </motion.div>
+    ))}
+</AnimatePresence> */}
 
       {/* Main Content */}
       <div className="content">
