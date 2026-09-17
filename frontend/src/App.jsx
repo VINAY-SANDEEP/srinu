@@ -9,7 +9,78 @@ function RadioButtonGroup() {
     "Aditya College of Engineering and Technology",
     "Aditya Polytechnic 1",
     "Aditya Polytechnic 2",
+    "Aec Random Generator",
+    "Acet Random Generator"
   ];
+
+  const generateRollNumbers = (start, end) => {
+    const prefix = start.substring(0, 2);
+
+    const startPart = start.substring(2);
+    const endPart = end.substring(2);
+
+    const rolls = [];
+
+    const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    let started = false;
+
+    for (let i = 0; i < chars.length; i++) {
+      for (let j = 0; j < 10; j++) {
+
+        const suffix =
+          i === 0
+            ? `0${j + 1}`
+            : `${chars[i]}${j}`;
+
+        const roll = prefix + suffix;
+
+        if (roll === start) {
+          started = true;
+        }
+
+        if (started) {
+          rolls.push(roll);
+        }
+
+        if (roll === end) {
+          return rolls;
+        }
+      }
+    }
+
+    return rolls;
+  }
+
+
+  // Aec Random Generator
+  const aec_aiml = generateRollNumbers("6101", "61J5");
+  const aec_cse = generateRollNumbers("0501", "05J5");
+  const aec_it = generateRollNumbers("1201", "12C5");
+
+  const aec_total = [
+    ...aec_aiml,
+    ...aec_cse,
+    ...aec_it
+  ];
+
+
+
+
+  // Acet Random Generator
+  const acet_aiml3 = generateRollNumbers("4201", "42G0");
+  const acet_cse3 = generateRollNumbers("0501", "05G0");
+  const acet_it3 = generateRollNumbers("1201", "1264");
+
+  // const acet_aiml2 = generateRollNumbers();
+  // const acet_cse2 = generateRollNumbers();
+  // const acet_it2 = generateRollNumbers();
+
+  const acet_total = [
+    ...acet_aiml3,
+    ...acet_cse3,
+    ...acet_it3
+  ]
 
   const [selectedOption, setSelectedOption] = useState("");
   const [rollno, setRoll] = useState("");
@@ -28,9 +99,11 @@ function RadioButtonGroup() {
 
   let url = "";
   const generateImage = () => {
-    if (!rollno || !selectedOption) {
-      alert("Please enter roll number and select your college.");
-      return;
+    if (selectedOption !== options[5] && selectedOption !== options[6]) {
+      if (!rollno || !selectedOption) {
+        alert("Please enter roll number and select your college.");
+        return;
+      }
     }
 
 
@@ -41,9 +114,19 @@ function RadioButtonGroup() {
     } else if (selectedOption === options[2]) {
       url = `https://info.aec.edu.in/ACET/StudentPhotos/${rollno.trim()}.jpg`;
     } else if (selectedOption === options[3]) {
-      url = `https://info.aec.edu.in/aecpoly/StudentPhotos/${rollno.trim()}.jpg`;
+      url = ` https://info.aec.edu.in/aecpoly/StudentPhotos/${rollno.trim()}.jpg`;
     } else if (selectedOption === options[4]) {
       url = `https://info.aec.edu.in/saipoly/StudentPhotos/${rollno.trim()}.jpg`;
+    }
+    else if (selectedOption === options[5]) {
+      const randomRoll =
+        aec_total[Math.floor(Math.random() * aec_total.length)];
+      url = `https://info.aec.edu.in/AEC/StudentPhotos/23A91A${randomRoll}.jpg`;
+    }
+    else if (selectedOption === options[6]) {
+      const randomRoll2 =
+        acet_total[Math.floor(Math.random() * acet_total.length)];
+      url = `https://info.aec.edu.in/ACET/StudentPhotos/23MH1A${randomRoll2}.jpg`
     }
 
     setLoading(true);
@@ -53,7 +136,7 @@ function RadioButtonGroup() {
     setTimeout(() => {
       setShowAnimation(false);
       setLoading(false);
-    }, 3000);
+    }, 1000);
   };
 
   return (
@@ -87,40 +170,7 @@ function RadioButtonGroup() {
         ))}
       </div>
 
-      {/* Falling Images
-      <AnimatePresence>
-  {showAnimation &&
-    [...Array(20)].map((_, i) => (
-      <motion.div
-        key={i}
-        className="falling-photo"
-        style={{
-          fontSize: "30px",
-        }}
-        initial={{
-          opacity: 0,
-          y: -100,
-          x: Math.random() * window.innerWidth,
-          // rotate: Math.random() * 90 - 45,
-          scale: 0.4,
-        }}
-        animate={{
-          opacity: [0, 1, 1, 0],
-          y: window.innerHeight + 200,
-          // rotate: Math.random() * 720 - 360,
-          scale: [0.4, 0.8, 0.6],
-        }}
-        exit={{ opacity: 0 }}
-        transition={{
-          duration: 3 + Math.random() * 2,
-          ease: "linear",
-          delay: Math.random() * 1.5,
-        }}
-      >
-        🧐
-      </motion.div>
-    ))}
-</AnimatePresence> */}
+
 
       {/* Main Content */}
       <div className="content">
@@ -206,9 +256,8 @@ function RadioButtonGroup() {
               {options.map((option, index) => (
                 <motion.label
                   key={index}
-                  className={`radio-card ${
-                    selectedOption === option ? "selected" : ""
-                  }`}
+                  className={`radio-card ${selectedOption === option ? "selected" : ""
+                    }`}
                   whileHover={{
                     scale: 1.02,
                     x: 5,
